@@ -99,6 +99,8 @@ def test_post_register_unsuccessful():
     )
 
     assert result.status_code == 400
+    assert result.json()['error'] == 'Missing password'
+    jsonschema.validate(result.json(), schema)
 
 
 def test_get_list_users():
